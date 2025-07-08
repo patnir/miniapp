@@ -1,2 +1,1 @@
-# miniapp
-testing a farcaster/ tba miniapp
+Mini App
