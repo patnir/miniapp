@@ -2,7 +2,6 @@
 
 import { sdk } from '@farcaster/miniapp-sdk'
 import { useEffect, useState } from 'react'
-import { Profile } from './profile'
 import { useAccount } from 'wagmi'
 import { Account } from './account'
 import { WalletOptions } from './wallet-options'
