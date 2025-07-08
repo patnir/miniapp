@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 import { Account } from './account'
 import { WalletOptions } from './wallet-options'
+import { SignMessageComponent } from './signmessage'
 
 function ConnectWallet() {
   const { isConnected } = useAccount()
@@ -41,6 +42,9 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1>Hello World {ready ? 'ready' : 'not ready'}</h1>
         <ConnectWallet />
+        <SignMessageComponent message="Hello, world!" onSignatureGenerated={(signature) => {
+          console.log(signature)
+        }} />
       </main>
     </div>
   );
