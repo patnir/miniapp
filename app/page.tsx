@@ -13,7 +13,7 @@ function ConnectWallet() {
 }
 
 export default function Home() {
-  const [ready, setReady] = useState(false)
+  const [_, setReady] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
