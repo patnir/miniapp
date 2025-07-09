@@ -302,7 +302,7 @@ function VerificationStatusCard({ address }: { address: string }) {
 }
 
 // Provider Verification Component
-function ProviderVerificationButtons({ address, onVerificationComplete }: { address: string, onVerificationComplete: () => void }) {
+function ProviderVerificationButtons({ address }: { address: string }) {
   const [selfLoading, setSelfLoading] = useState(false);
   const [selfUrl, setSelfUrl] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -332,15 +332,7 @@ function ProviderVerificationButtons({ address, onVerificationComplete }: { addr
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <h3 className="font-bold text-lg">Verify with Identity Providers</h3>
-        <button
-          onClick={onVerificationComplete}
-          className="px-3 py-1 text-xs bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-md text-gray-700"
-        >
-          Refresh All
-        </button>
-      </div>
+      <h3 className="font-bold text-lg">Verify with Identity Providers</h3>
       
       {/* Self.xyz */}
       <div className="p-3 border rounded-lg bg-gray-50">
@@ -467,7 +459,7 @@ function AccountWithVerification() {
       {address && <VerificationStatusCard address={address} />}
 
       {/* Provider Verification */}
-      {address && <ProviderVerificationButtons address={address} onVerificationComplete={refetch} />}
+      {address && <ProviderVerificationButtons address={address} />}
     </div>
   )
 }
