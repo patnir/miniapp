@@ -6,6 +6,7 @@ import { useAccount, useDisconnect } from 'wagmi'
 import { signMessage } from '@wagmi/core'
 import { config } from './config'
 import { WalletOptions } from './wallet-options'
+import { QRCodeSVG } from 'qrcode.react'
 
 // Types and interfaces
 interface VerificationStatus {
@@ -213,25 +214,53 @@ function VerificationStatusCard({ address }: { address: string }) {
         </div>
       )}
 
-      {/* Status Header */}
-      <div className="flex items-center space-x-3 mb-4">
-        <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-          isVerified ? 'bg-green-500' : 'bg-red-500'
-        }`}>
-          {isVerified ? (
-            <span className="text-white text-sm">✓</span>
-          ) : (
-            <span className="text-white text-sm">×</span>
-          )}
+      {/* Status Header with Refresh Button */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-3">
+          <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+            isVerified ? 'bg-green-500' : 'bg-red-500'
+          }`}>
+            {isVerified ? (
+              <span className="text-white text-sm">✓</span>
+            ) : (
+              <span className="text-white text-sm">×</span>
+            )}
+          </div>
+          <div>
+            <h3 className="font-bold text-lg">
+              {isVerified ? 'Verified' : 'Not Verified'}
+            </h3>
+            <p className="text-sm text-gray-600">
+              {address.slice(0, 6)}...{address.slice(-4)}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 className="font-bold text-lg">
-            {isVerified ? 'Verified' : 'Not Verified'}
-          </h3>
-          <p className="text-sm text-gray-600">
-            {address.slice(0, 6)}...{address.slice(-4)}
-          </p>
-        </div>
+        
+        {/* Refresh Button */}
+        <button
+          onClick={refetch}
+          disabled={loading}
+          className={`p-2 rounded-md border transition-colors ${
+            loading 
+              ? 'bg-gray-100 border-gray-300 cursor-not-allowed' 
+              : 'bg-blue-50 border-blue-200 hover:bg-blue-100 hover:border-blue-300'
+          }`}
+          title="Refresh verification status"
+        >
+          <svg 
+            className={`w-4 h-4 text-blue-600 ${loading ? 'animate-spin' : ''}`} 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
+            />
+          </svg>
+        </button>
       </div>
 
       {/* Active Verifications */}
@@ -273,7 +302,7 @@ function VerificationStatusCard({ address }: { address: string }) {
 }
 
 // Provider Verification Component
-function ProviderVerificationButtons({ address }: { address: string }) {
+function ProviderVerificationButtons({ address, onVerificationComplete }: { address: string, onVerificationComplete: () => void }) {
   const [selfLoading, setSelfLoading] = useState(false);
   const [selfUrl, setSelfUrl] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -303,11 +332,19 @@ function ProviderVerificationButtons({ address }: { address: string }) {
 
   return (
     <div className="space-y-3">
-      <h3 className="font-bold text-lg">Verify with Identity Providers</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="font-bold text-lg">Verify with Identity Providers</h3>
+        <button
+          onClick={onVerificationComplete}
+          className="px-3 py-1 text-xs bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-md text-gray-700"
+        >
+          Refresh All
+        </button>
+      </div>
       
       {/* Self.xyz */}
       <div className="p-3 border rounded-lg bg-gray-50">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex-1">
             <h4 className="font-medium">Self.xyz</h4>
             <p className="text-sm text-gray-600">Verify your identity using Self.xyz</p>
@@ -326,21 +363,38 @@ function ProviderVerificationButtons({ address }: { address: string }) {
         </div>
         
         {selfUrl && (
-          <div className="mt-2 p-2 bg-white rounded border">
-            <p className="text-xs text-gray-600 mb-1">Self.xyz Verification URL:</p>
-            <a 
-              href={selfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 text-sm break-all"
-            >
-              {selfUrl}
-            </a>
+          <div className="space-y-3">
+            {/* QR Code */}
+            <div className="flex justify-center">
+              <div className="p-4 bg-white rounded-lg border-2 border-gray-200">
+                <QRCodeSVG
+                  value={selfUrl}
+                  size={150}
+                  bgColor="white"
+                  fgColor="black"
+                  level="H"
+                  includeMargin={false}
+                />
+              </div>
+            </div>
+            
+            {/* URL Link */}
+            <div className="text-xs p-3 bg-white rounded border">
+              <p className="text-gray-600 mb-2">Or open this link directly:</p>
+              <a 
+                href={selfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                Open Self.xyz Verification
+              </a>
+            </div>
           </div>
         )}
         
         {error && (
-          <div className="mt-2 p-2 bg-red-100 border border-red-300 rounded">
+          <div className="mt-3 p-3 bg-red-100 border border-red-300 rounded">
             <p className="text-red-800 text-sm">{error}</p>
           </div>
         )}
@@ -389,6 +443,7 @@ function ProviderVerificationButtons({ address }: { address: string }) {
 function AccountWithVerification() {
   const { address } = useAccount()
   const { disconnect } = useDisconnect()
+  const { refetch } = useVerificationStatus(address || null);
 
   return (
     <div className="w-full max-w-md space-y-4">
@@ -412,7 +467,7 @@ function AccountWithVerification() {
       {address && <VerificationStatusCard address={address} />}
 
       {/* Provider Verification */}
-      {address && <ProviderVerificationButtons address={address} />}
+      {address && <ProviderVerificationButtons address={address} onVerificationComplete={refetch} />}
     </div>
   )
 }
