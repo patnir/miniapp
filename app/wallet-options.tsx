@@ -5,11 +5,13 @@ export function WalletOptions() {
   const { connectors, connect } = useConnect()
 
   return connectors.map((connector) => (
-    <WalletOption
-      key={connector.uid}
-      connector={connector}
-      onClick={() => connect({ connector })}
-    />
+    <div>
+      <WalletOption
+        key={connector.uid}
+        connector={connector}
+        onClick={() => connect({ connector })}
+      />
+    </div>
   ))
 }
 
@@ -23,7 +25,7 @@ function WalletOption({
   const [ready, setReady] = React.useState(false)
 
   React.useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const provider = await connector.getProvider()
       setReady(!!provider)
     })()
