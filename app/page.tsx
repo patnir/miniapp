@@ -44,12 +44,16 @@ export default function Home() {
           <p className="text-gray-600 text-sm">
             Verify your identity with trusted providers
           </p>
-          <a href="https://verified-voting.vercel.app" className="text-xl font-bold mb-2" target="_blank" rel="noopener noreferrer">
+          <div className="text-gray-600 mb-2">
+          <a href="https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
             Opens link (https://verified-voting.vercel.app)
           </a>
-          <a href="cbwallet://miniapps?url=https://verified-voting.vercel.app" className="text-xl font-bold mb-2" target="_blank" rel="noopener noreferrer">
+          </div>
+          <div className="text-gray-600 mb-2">
+          <a href="cbwallet://miniapps?url=https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
             Opens deep link (cbwallet://miniapps?url=https://verified-voting.vercel.app)
           </a>
+          </div>
         </div>
         
         <ConnectWallet />
