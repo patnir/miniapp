@@ -28,6 +28,7 @@ export default function Home() {
     return (
       <div className="min-h-screen p-4 flex items-center justify-center">
         <div className="text-center">
+          
           <h1 className="text-xl font-bold mb-2">Base Verify</h1>
           <div className="text-gray-600">Loading...</div>
         </div>
@@ -43,6 +44,9 @@ export default function Home() {
           <p className="text-gray-600 text-sm">
             Verify your identity with trusted providers
           </p>
+          <a href="https://verified-voting.vercel.app" className="text-xl font-bold mb-2" target="_blank" rel="noopener noreferrer">
+            Verfied Voting
+          </a>
         </div>
         
         <ConnectWallet />
