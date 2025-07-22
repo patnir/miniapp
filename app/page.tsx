@@ -45,18 +45,18 @@ export default function Home() {
             Verify your identity with trusted providers
           </p>
           <div className="text-gray-600 mb-2">
-          <a href="https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
-            Opens link (https://verified-voting.vercel.app)
+          <a href="https://verified-voting.vercel.app?ref=miniapp&v=1.2&t=1234567890" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
+            Opens link (https://verified-voting.vercel.app?ref=miniapp&v=1.2&t=1234567890)
           </a>
           </div>
           <div className="text-gray-600 mb-2">
-          <a href="cbwallet://miniapp?url=https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
-            Opens deep link (cbwallet://miniapp?url=https://verified-voting.vercel.app)
+          <a href="cbwallet://miniapp?url=https://verified-voting.vercel.app?ref=deeplink&v=2.1&session=abc123" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
+            Opens deep link (cbwallet://miniapp?url=https://verified-voting.vercel.app?ref=deeplink&v=2.1&session=abc123)
           </a>
           </div>
           <div className="text-gray-600 mb-2">
-          <a href="https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
-            Opens in Coinbase Wallet (https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app)
+          <a href="https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app?ref=coinbase&v=3.0&uid=xyz789" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
+            Opens in Coinbase Wallet (https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app?ref=coinbase&v=3.0&uid=xyz789)
           </a>
           </div>
         </div>
