@@ -50,7 +50,7 @@ export default function Home() {
           </a>
           </div>
           <div className="text-gray-600 mb-2">
-          <a href="cbwallet://miniapps?url=https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
+          <a href="cbwallet://miniapp?url=https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
             Opens deep link (cbwallet://miniapp?url=https://verified-voting.vercel.app)
           </a>
           </div>
