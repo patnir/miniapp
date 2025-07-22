@@ -54,6 +54,11 @@ export default function Home() {
             Opens deep link (cbwallet://miniapps?url=https://verified-voting.vercel.app)
           </a>
           </div>
+          <div className="text-gray-600 mb-2">
+          <a href="https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
+            Opens in Coinbase Wallet (https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app)
+          </a>
+          </div>
         </div>
         
         <ConnectWallet />
