@@ -44,7 +44,7 @@ export default function Home() {
           <p className="text-gray-600 text-sm">
             Verify your identity with trusted providers
           </p>
-          {/* <div className="text-gray-600 mb-2">
+          <div className="text-gray-600 mb-2">
             <a href="https://verified-voting.vercel.app?ref=miniapp&v=1.2&t=1234567890" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
               Opens link (https://verified-voting.vercel.app?ref=miniapp&v=1.2&t=1234567890)
             </a>
@@ -58,7 +58,7 @@ export default function Home() {
             <a href="https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app/?ref=coinbase&v=3.0&uid=xyz789" className="font-bold mb-2" target="_blank" rel="noopener noreferrer">
               Opens in Coinbase Wallet (https://wallet.coinbase.com/miniapp?url=https://verified-voting.vercel.app/?ref=coinbase&v=3.0&uid=xyz789)
             </a>
-          </div> */}
+          </div>
         </div>
 
         <ConnectWallet />
